@@ -1,2 +1,2 @@
-# seed-front-end
-Magic project
+# TeamWork
+Magic project ;)
