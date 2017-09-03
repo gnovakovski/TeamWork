@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import EventsFeed from '@/views/EventsFeed'
+import Test from '@/views/Test'
 import Hello from '@/views/Hello'
 
 Vue.use(Router)
@@ -16,6 +17,11 @@ export default new Router({
       path: '/Hello',
       name: 'Hello',
       component: Hello
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test
     }
   ]
 })
