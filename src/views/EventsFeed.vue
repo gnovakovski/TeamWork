@@ -26,8 +26,8 @@
     }),
     methods: {
       fetchEvents () {
-        events.getEvents().then(data => {
-          this.events = data
+        events.getEvents(data => {
+          this.events.push(data)
         })
       }
     },

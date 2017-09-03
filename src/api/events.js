@@ -1,9 +1,14 @@
-import { db } from './firebase.js'
+import fire from './firebase.js'
 
 export default {
-  getEvents () {
-    return db.ref('events/').once('value').then(snapshot => {
-      return snapshot && snapshot.val ? snapshot.val() : []
+  getEvents (cb) {
+    fire.db.ref('events/').on('value', snapshot => {
+      snapshot.forEach(childSnapshot => {
+        var childData = childSnapshot.val()
+        childData['key'] = childSnapshot.key
+
+        cb(childData)
+      })
     })
   }
 }

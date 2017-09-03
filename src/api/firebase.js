@@ -9,6 +9,8 @@ const fireApp = firebase.initializeApp({
   messagingSenderId: '358872766976'
 })
 
+fireApp.auth().signInWithEmailAndPassword('ezequielmross@gmail.com', 'teste123')
+
 export default {
-  database: fireApp.database()
+  db: fireApp.database()
 }
