@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import events from '@/api/events'
 export default {
-  name: 'events-feed'
+  name: 'events-feed',
+  created () {
+    events.getEvents().then(data => {
+      this.events = data
+    })
+  }
 }
 </script>
 

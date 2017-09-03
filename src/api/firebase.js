@@ -1,6 +1,6 @@
 import * as firebase from 'firebase'
 
-firebase.initializeApp({
+const fireApp = firebase.initializeApp({
   apiKey: 'AIzaSyCShacT6sUE9q4OHamVw3aT3NS3Ll4Jeak',
   authDomain: 'team-work-1772.firebaseapp.com',
   databaseURL: 'https://team-work-1772.firebaseio.com',
@@ -10,5 +10,5 @@ firebase.initializeApp({
 })
 
 export default {
-  database: firebase.database()
+  database: fireApp.database()
 }
