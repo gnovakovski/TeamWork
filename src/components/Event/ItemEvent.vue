@@ -1,6 +1,7 @@
 <template>
   <div id="item-event">
-
+    {{event.date}}
+    {{event.name}}
   </div>
 </template>
 
