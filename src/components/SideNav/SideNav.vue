@@ -7,17 +7,21 @@
         md-toolbar.md-small.no-color
           md-list-item.app-title.md-toolbar-container
             span.app-title-2 Team work
-        // Mailboxes
-        div(v-for="route in routes" :key="route.url")
+        // Routes
+        md-list
+          router-link(v-for="route in routes" :key="route.name" :to="route.name")
+            md-list-item
+              span {{ route.label }}
 </template>
 
 <script>
+import routes from '@/views/'
 
 export default {
   name: 'sidenav',
   data() {
     return {
-      routes: []
+      routes: routes
     }
   },
   methods: {
@@ -52,18 +56,9 @@ export default {
 
 .md-toolbar-container, .md-icon
   color white
-.md-icon-button
-  margin 0 -8px 0 0
 
 .content
   width 100%
-
-#apps
-  width 25%
-
-#mailboxes
-  overflow-y auto
-  height calc(100vh - 64px)
 
 .md-toolbar
   background-color white !important
