@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import events from '@/api/events'
+  import events from '@/utils/api/events'
   import ItemEvent from '@/components/Event/ItemEvent.vue'
 
   export default {

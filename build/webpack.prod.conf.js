@@ -36,7 +36,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       compress: {
         warnings: false
       },
-      sourceMap: true
+      sourceMap: config.build.productionSourceMap
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -102,7 +102,18 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+        {
+          urlPattern: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+          handler: 'cacheFirst'
+        },
+        {
+          // Match any api core-server but ignore accounts/me (token validation)
+          urlPattern: /^(?:https?:\/\/)([^:\/\n]+)pling.net.br(?!\/api\/v1\/accounts\/me).*/,
+          handler: 'networkFirst'
+        }
+      ]
     })
   ]
 })

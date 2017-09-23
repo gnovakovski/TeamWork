@@ -22,6 +22,27 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+
+    'no-unused-vars': 1,
+
+    'space-before-function-paren': 0,
+
+    'one-var': 0,
+
+    'curly': 0,
+
+    'no-multi-spaces': 0,
+
+    'key-spacing': 0,
+
+    // ES6
+    'object-shorthand': 0,
+    'prefer-arrow-callback': 2,
+    'prefer-const': 2,
+    'quotes': ['error', 'single'],
+    'prefer-spread': 2,
+    'require-await': 2,
+    'prefer-rest-params': 1
   }
 }

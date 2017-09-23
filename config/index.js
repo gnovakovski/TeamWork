@@ -1,14 +1,20 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path'),
+  environments = {
+    'local'          : 'lcl.env.js',
+    'production'     : 'prod.env.js',
+  }
+
+environments[process.env.NODE_ENV] = environments[process.env.NODE_ENV] || environments['development']
 
 module.exports = {
   build: {
-    env: require('./prod.env'),
+    env: require(`./${environments[process.env.NODE_ENV]}`),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: true,
+    productionSourceMap: process.env.NODE_ENV !== 'production',
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
@@ -22,8 +28,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    env: require('./dev.env'),
-    port: 8080,
+    env: require(`./${environments[process.env.NODE_ENV]}`),
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
