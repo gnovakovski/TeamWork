@@ -3,7 +3,6 @@
     md-list.md-triple-line
       md-list-item(v-for="event in events" :key="event._id")
         item-event(:event="event")
-        md-divider
 </template>
 
 <script>

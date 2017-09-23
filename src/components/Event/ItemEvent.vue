@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:id="event.key")
+  md-whiteframe(:id="event.key" md-elevation="2")
     h3 {{ event.name }}
     h5 {{ event.date | getDefaultFormat }}
 </template>
@@ -15,6 +15,9 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+.md-whiteframe
+  width 100%
+  padding 10px
+  margin-bottom 10px
 </style>
