@@ -2,7 +2,8 @@
   div#events-feed
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
-    fab-button(@click="openModal")
+    fab-button(@click="openModal()")
+    new-event-dialog(v-if="openModal" @close="closeModal()")
 
 </template>
 
@@ -10,6 +11,9 @@
   import api from '@/utils/api/'
 
   export default {
+    data: () => ({
+      showModal: false
+    }),
     components: {
       ItemEvent: require('@/components/Event/ItemEvent.vue'),
       FabButton: () => import('@/components/Buttons/FabButton.vue'),
@@ -19,6 +23,12 @@
       events: api.events.orderByChild('date')
     },
     methods: {
+      openModal() {
+        this.showModal = true
+      },
+      closeModal() {
+        this.showModal = false
+      },
       removeEvent(key) {
         api.events.child(key).remove()
       },
