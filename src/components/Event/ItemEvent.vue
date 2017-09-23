@@ -1,6 +1,6 @@
 
 <template lang="pug">
-  md-card#card-example(:id="event.key")
+  md-card#card-example(:id="event.key" @click.native="goToDetails")
     md-card-area(md-inset)
 
       md-card-header
@@ -23,9 +23,6 @@
             md-button Dia 17: 10h30 às 12h30
             md-button Dia 17: 10h30 às 12h30
 
-    md-card-actions
-      md-button.md-primary Eu Vou!
-
 </template>
 
 <script>
@@ -35,6 +32,11 @@
     filters: { getDefaultFormat },
     props: {
       event: Object
+    },
+    methods: {
+      goToDetails() {
+        this.$router.push('events/' + this.event['.key'])
+      }
     }
   }
 </script>

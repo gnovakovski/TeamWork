@@ -8,8 +8,8 @@
             span.app-title-2 Team work
         // Routes
         md-list
-          md-list-item(v-for="route in routes" :key="route.name")
-            router-link(v-if="route && route.name" :to="route.name")
+          md-list-item(v-for="route in routes" :key="route.name" v-if="route && route.label")
+            router-link(:to="route.name")
               span {{ route.label }}
 </template>
 

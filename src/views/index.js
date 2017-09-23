@@ -7,6 +7,11 @@ export default [
     component: require('@/views/EventsFeed')
   },
   {
+    path: '/events/:id',
+    name: 'EventDetails',
+    component: () => import('@/views/EventDetails')
+  },
+  {
     path: '/Hello',
     name: 'Hello',
     label: 'Hello',
