@@ -69,7 +69,8 @@ export default {
           name: this.name,
           description: this.description,
           address: this.address,
-          date: this.date
+          date: this.date,
+          username: localStorage.getItem('USERNAME')
         })
       }
       this.name = null

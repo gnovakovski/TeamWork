@@ -11,6 +11,7 @@ const fireApp = firebase.initializeApp({
 
 fireApp.auth().onAuthStateChanged(user => {
   localStorage.setItem('IS-AUTH', user ? true : '')
+  localStorage.setItem('USERNAME', user ? user.email.split('@')[0] : '')
 })
 
 export default {
