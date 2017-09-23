@@ -3,7 +3,7 @@
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
     fab-button(@click="$refs.newEventDialog.open()")
-    new-event-dialog(ref="newEventDialog" @close="$refs.newEventDialog.close()")
+    new-event-dialog(ref="newEventDialog")
 
 </template>
 
