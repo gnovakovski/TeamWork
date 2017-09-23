@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .dialog-container > .md-dialog
   width 90vw
   max-width 100%
