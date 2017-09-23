@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    md-dialog.dialog-container(:md-open-from="from" :md-close-to="from" ref="dialog")
+    md-dialog.dialog-container(:md-open-from="from" :md-close-to="from" ref="new-event-dialog")
 
       div.form-container
 
@@ -11,34 +11,34 @@
         md-dialog-content
           <form novalidate @submit.stop.prevent="submit">
             <md-input-container>
-              <label>Title</label>
-              <md-input></md-input>
+              <label>Nome</label>
+              <md-input required v-model="name"></md-input>
             </md-input-container>
 
             <md-input-container>
               <label>Descrição</label>
-              <md-textarea maxlength="200"></md-textarea>
+              <md-textarea required maxlength="150" v-model="description"></md-textarea>
             </md-input-container>
 
             <md-input-container>
               <md-icon>location_on</md-icon>
               <label>Local</label>
-              <md-input></md-input>
+              <md-input required v-model="address"></md-input>
             </md-input-container>
 
             <md-input-container>
               <md-icon>access_time</md-icon>
               <label>Data e Hora</label>
-              <md-input type="tel"></md-input>
+              <md-input required v-model="date"></md-input>
             </md-input-container>
 
           </form>
 
           md-layout.dialog-actions
             md-layout(md-flex="50")
-              md-button.md-primary Cancelar
+              md-button(@click="close(false)").md-primary Cancelar
             md-layout(md-align="end")
-              md-button.md-primary.md-raised Criar
+              md-button(@click="close(true)").md-primary.md-raised Criar
 
     snackbar(ref="snackbar")
 </template>
@@ -53,7 +53,7 @@ export default {
   props: ['from'],
   data() {
     return {
-      title: null,
+      name: null,
       description: null,
       address: null,
       date: null
@@ -61,14 +61,22 @@ export default {
   },
   methods: {
     open() {
-      this.$refs['dialog'].open()
+      this.$refs['new-event-dialog'].open()
     },
-    close(resolveData) {
-      this.$refs['dialog'].close()
-      this.$emit('close', resolveData)
-    },
-    cancel() {
-
+    close(saveIt) {
+      if (saveIt) {
+        this.$emit('addEvent', {
+          name: this.name,
+          description: this.description,
+          address: this.address,
+          date: this.date
+        })
+      }
+      this.name = null
+      this.description = null
+      this.address = null
+      this.date = null
+      this.$refs['new-event-dialog'].close()
     }
   }
 }
