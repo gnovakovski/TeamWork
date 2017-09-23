@@ -5,15 +5,18 @@
     transition(name="fade")
       keep-alive
         router-view.routes
+
+    login
 </template>
 
 <script>
 import Navbar from '@/components/Header/NavBar.vue'
 import SideNav from '@/components/SideNav/SideNav.vue'
+import Login from '@/components/Dialogs/Login.vue'
 
 export default {
   name: 'app',
-  components: { Navbar, SideNav },
+  components: { Navbar, SideNav, Login },
   data() {
     return {}
   },

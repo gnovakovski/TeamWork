@@ -9,8 +9,13 @@ const fireApp = firebase.initializeApp({
   messagingSenderId : process.env.MESSAGING_SENDER_ID
 })
 
-fireApp.auth().signInWithEmailAndPassword('ezequielmross@gmail.com', 'teste123')
+fireApp.auth().onAuthStateChanged(user => {
+  localStorage.setItem('IS-AUTH', user ? true : '')
+})
+
+// fireApp.auth().signInWithEmailAndPassword('ezequielmross@gmail.com', 'teste123')
 
 export default {
-  db: fireApp.database()
+  db: fireApp.database(),
+  auth: fireApp.auth()
 }

@@ -1,7 +1,7 @@
 
 export default [
   {
-    path: '/',
+    path: '/events',
     name: 'EventsFeed',
     label: 'Eventos',
     component: require('@/views/EventsFeed')
@@ -20,6 +20,6 @@ export default [
   },
   {
     path: '*',
-    redirect: '/'
+    redirect: '/events'
   }
 ]
