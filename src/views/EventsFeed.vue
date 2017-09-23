@@ -2,8 +2,8 @@
   div#events-feed
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
-    fab-button(@click="openModal()")
-    new-event-dialog(v-if="openModal" @close="closeModal()")
+    fab-button(@click="$refs.newEventDialog.open()")
+    new-event-dialog(ref="newEventDialog" @close="$refs.newEventDialog.close()")
 
 </template>
 
@@ -25,9 +25,11 @@
     methods: {
       openModal() {
         this.showModal = true
+        console.log('ABRIU')
       },
       closeModal() {
         this.showModal = false
+        console.log('FECHOU')
       },
       removeEvent(key) {
         api.events.child(key).remove()

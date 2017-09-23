@@ -1,13 +1,38 @@
 <template lang="pug">
   div
     md-dialog.dialog-container(:md-open-from="from" :md-close-to="from" ref="dialog")
-      // Title
-      md-dialog-title
-        div Title
 
-      // Content
-      md-dialog-content
-        div Hello
+      div.form-container
+
+        // Title
+        md-dialog-title
+          div Novo Evento
+
+        md-dialog-content
+          <form novalidate @submit.stop.prevent="submit">
+            <md-input-container>
+              <label>Title</label>
+              <md-input></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <label>Descrição</label>
+              <md-textarea maxlength="200"></md-textarea>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>location_on</md-icon>
+              <label>Local</label>
+              <md-input></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>access_time</md-icon>
+              <label>Data e Hora</label>
+              <md-input type="tel"></md-input>
+            </md-input-container>
+
+          </form>
 
     snackbar(ref="snackbar")
 </template>
@@ -22,6 +47,10 @@ export default {
   props: ['from'],
   data() {
     return {
+      title: null,
+      description: null,
+      address: null,
+      date: null
     }
   },
   methods: {
@@ -44,9 +73,17 @@ export default {
   max-height 100%
   overflow-y auto
 
+.form-container
+  margin 0 auto
+  width 90%
+
 .md-dialog-title
   margin-bottom 35px
 
 .md-dialog-content
   padding 0
+
+@media (min-width 612px)
+  .form-container
+    width 75%
 </style>
