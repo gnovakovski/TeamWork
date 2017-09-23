@@ -6,11 +6,12 @@
       md-card-header
         h2.md-title {{ event.name }}
         div.md-subhead
-          md-iconlocation_on
-          span2 {{ event.date | getDefaultFormat }}{{` em ${event.address}`}}
+          md-icon location_on
+          span {{`${event.address} `}}
+          md-icon access_time
+          span {{ event.date | getDefaultFormat }}
 
-      md-card-content
-        Illy {{ event.description }}
+      md-card-content {{ event.description }}
 
     //
       md-card-content
@@ -52,7 +53,7 @@
     }
 
     span {
-      vertical-align: middle;
+      // vertical-align: middle;
     }
   }
 
