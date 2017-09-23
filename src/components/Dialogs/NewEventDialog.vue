@@ -34,6 +34,12 @@
 
           </form>
 
+          md-layout.dialog-actions
+            md-layout(md-flex="50")
+              md-button.md-primary(@click="cancel") Cancelar
+            md-layout(md-align="end")
+              md-button.md-primary.md-raised(@click="createEvent") Criar
+
     snackbar(ref="snackbar")
 </template>
 
@@ -65,7 +71,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .dialog-container > .md-dialog
   width 100vw
   max-width 100%
@@ -82,6 +88,9 @@ export default {
 
 .md-dialog-content
   padding 0
+
+.dialog-actions
+  padding-top 20px
 
 @media (min-width 612px)
   .form-container
