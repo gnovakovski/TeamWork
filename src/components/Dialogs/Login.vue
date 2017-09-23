@@ -12,7 +12,7 @@
             label Email
             md-input(type="email" v-model="email")
           md-input-container(md-has-password)
-            label Password Reveal
+            label Password
             md-input(type="password" v-model="password")
 
       md-dialog-actions
