@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'example-dialog',
+  name: 'new-event-dialog',
   components: {
     Snackbar: require('@/components/SnackBar.vue')
   },
