@@ -13,8 +13,6 @@ fireApp.auth().onAuthStateChanged(user => {
   localStorage.setItem('IS-AUTH', user ? true : '')
 })
 
-// fireApp.auth().signInWithEmailAndPassword('ezequielmross@gmail.com', 'teste123')
-
 export default {
   db: fireApp.database(),
   auth: fireApp.auth()
