@@ -36,9 +36,9 @@
 
           md-layout.dialog-actions
             md-layout(md-flex="50")
-              md-button.md-primary(@click="cancel") Cancelar
+              md-button.md-primary Cancelar
             md-layout(md-align="end")
-              md-button.md-primary.md-raised(@click="createEvent") Criar
+              md-button.md-primary.md-raised Criar
 
     snackbar(ref="snackbar")
 </template>
@@ -65,14 +65,17 @@ export default {
     },
     close(resolveData) {
       this.$refs['dialog'].close()
-      this.$emit('close')
+      this.$emit('close', resolveData)
+    },
+    cancel() {
+
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.dialog-container > .md-dialog
+.dialog-container >>> .md-dialog
   width 100vw
   max-width 100%
   height 100vh
