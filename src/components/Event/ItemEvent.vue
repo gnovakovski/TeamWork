@@ -1,11 +1,6 @@
-<template lang="pug">
-  //
-    md-whiteframe(:id="event.key" md-elevation="2")
-      h3 {{ event.name }}
-      p {{ event.description }}
-      h5 {{ event.date | getDefaultFormat }}{{` em ${event.address}`}}
 
-  md-card#card-example
+<template lang="pug">
+  md-card#card-example(:id="event.key")
     md-card-area(md-inset)
 
       md-card-header
@@ -44,14 +39,6 @@
 </script>
 
 <style lang="stylus" scoped>
-
-/*
-.md-whiteframe
-  width 100%
-  padding 10px
-  margin-bottom 10px
-  background-color white
-*/
 
 .card-example {
   .md-subhead {

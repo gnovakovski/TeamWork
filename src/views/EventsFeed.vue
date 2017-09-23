@@ -2,6 +2,8 @@
   div#events-feed
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
+    fab-button(@click="openModal")
+
 </template>
 
 <script>
@@ -9,7 +11,9 @@
 
   export default {
     components: {
-      ItemEvent: require('@/components/Event/ItemEvent.vue')
+      ItemEvent: require('@/components/Event/ItemEvent.vue'),
+      FabButton: () => import('@/components/Buttons/FabButton.vue'),
+      NewEventDialog: () => import('@/components/Dialogs/NewEventDialog.vue')
     },
     firebase: {
       events: api.events.orderByChild('date')
@@ -38,8 +42,11 @@
   background-color: rgb(220, 220, 220);
 
 .center-feed
-  max-width 70%
   margin 0 auto
-  padding-top 40px
+  padding-top 20px
+
+@media (min-width 612px)
+  .center-feed
+    width: 612px
 
 </style>
