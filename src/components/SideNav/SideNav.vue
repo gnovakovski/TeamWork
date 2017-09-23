@@ -1,7 +1,6 @@
 <template lang="pug">
   md-sidenav.md-left(ref="leftSidenav" @open="changeBodyScroll('hidden')" @close="changeBodyScroll('auto')")
     div.row.main-content
-      // Current app content
       div.content
         // Toolbar
         md-toolbar.md-small.no-color
@@ -9,8 +8,8 @@
             span.app-title-2 Team work
         // Routes
         md-list
-          router-link(v-for="route in routes" :key="route.name" :to="route.name")
-            md-list-item
+          md-list-item(v-for="route in routes" :key="route.name")
+            router-link(v-if="route && route.name" :to="route.name")
               span {{ route.label }}
 </template>
 
@@ -21,7 +20,7 @@ export default {
   name: 'sidenav',
   data() {
     return {
-      routes: routes
+      routes: []
     }
   },
   methods: {
@@ -29,6 +28,9 @@ export default {
     changeBodyScroll(value) {
       document.body.style['overflow-y'] = value
     }
+  },
+  beforeMount() {
+    this.routes = routes
   }
 }
 </script>

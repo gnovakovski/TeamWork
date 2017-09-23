@@ -1,16 +1,9 @@
-<template>
-  <div id="events-feed">
-
-    <md-list class="md-triple-line">
-
-      <md-list-item v-for="event in events" :key="event._id">
-        <item-event :event="event"></item-event>
-        <md-divider></md-divider>
-      </md-list-item>
-
-    </md-list>
-
-  </div>
+<template lang="pug">
+  div#events-feed
+    md-list.md-triple-line
+      md-list-item(v-for="event in events" :key="event._id")
+        item-event(:event="event")
+        md-divider
 </template>
 
 <script>

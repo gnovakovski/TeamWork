@@ -10,12 +10,16 @@ export default [
     path: '/Hello',
     name: 'Hello',
     label: 'Hello',
-    component: require('@/views/Hello')
+    component: () => import('@/views/Hello')
   },
   {
     path: '/Test',
     name: 'Test',
     label: 'Teste',
-    component: require('@/views/Test')
+    component: () => import('@/views/Test')
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
