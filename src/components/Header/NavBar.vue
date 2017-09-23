@@ -65,7 +65,7 @@ button
   color white !important
 
 .header
-  background #f5b335
+  background #1e88e5
   height 40px
   position fixed
   top 0
