@@ -6,25 +6,29 @@
 </template>
 
 <script>
-  import events from '@/utils/api/events'
-  import ItemEvent from '@/components/Event/ItemEvent.vue'
+  import api from '@/utils/api/'
 
   export default {
     components: {
-      ItemEvent
+      ItemEvent: require('@/components/Event/ItemEvent.vue')
     },
-    data: () => ({
-      events: []
-    }),
+    firebase: {
+      events: api.events.orderByChild('date')
+    },
     methods: {
-      fetchEvents () {
-        events.getEvents(data => {
-          this.events.push(data)
-        })
+      removeEvent(key) {
+        api.events.child(key).remove()
+      },
+      addEvent(event) {
+        if (event) {
+          api.events.push({
+            'name': event.name,
+            'date': event.date,
+            'address': event.address,
+            'description': event.description
+          })
+        }
       }
-    },
-    created () {
-      this.fetchEvents()
     }
   }
 </script>
