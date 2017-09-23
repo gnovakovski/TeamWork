@@ -1,7 +1,8 @@
 <template lang="pug">
   md-whiteframe(:id="event.key" md-elevation="2")
     h3 {{ event.name }}
-    h5 {{ event.date | getDefaultFormat }}
+    p {{ event.description }}
+    h5 {{ event.date | getDefaultFormat }}{{` em ${event.address}`}}
 </template>
 
 <script>
