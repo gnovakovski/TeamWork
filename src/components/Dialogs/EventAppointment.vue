@@ -15,7 +15,7 @@
 
       md-dialog-actions
         md-button(@click="close(false)").md-primary Cancelar
-        md-button(@click="close(true)").md-primary.md-raised Criar
+        md-button(@click="close(true)").md-primary.md-raised Eu vou
 
     snackbar(ref="snackbar")
 </template>

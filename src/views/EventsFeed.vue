@@ -29,6 +29,7 @@
 
 #events-feed
   background-color: rgb(220, 220, 220);
+  min-height 100vh
 
 .center-feed
   margin 0 auto
