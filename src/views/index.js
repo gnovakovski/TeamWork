@@ -2,7 +2,7 @@
 export default [
   {
     path: '/events',
-    name: 'EventsFeed',
+    name: '/',
     label: 'Eventos',
     component: require('@/views/EventsFeed')
   },
@@ -11,6 +11,7 @@ export default [
     name: 'EventDetails',
     component: () => import('@/views/EventDetails')
   },
+  /*
   {
     path: '/Hello',
     name: 'Hello',
@@ -23,6 +24,7 @@ export default [
     label: 'Teste',
     component: () => import('@/views/Test')
   },
+  */
   {
     path: '*',
     redirect: '/events'
