@@ -2,9 +2,7 @@
   div#app
     navbar(@openSidenav="openSidenav")
     side-nav(ref="sidenav")
-    transition(name="fade")
-      keep-alive
-        router-view.routes
+    router-view.routes
 
     login
 </template>
