@@ -16,7 +16,7 @@
 
             md-input-container
               label Descrição
-              md-textarea(maxlength="150" v-model="event.description")
+              md-textarea(maxlength="1000" v-model="event.description")
 
             md-input-container
               md-icon location_on

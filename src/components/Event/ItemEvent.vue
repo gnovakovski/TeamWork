@@ -1,10 +1,10 @@
 
 <template lang="pug">
-  md-card#card-example(:id="event.key" @click.native="goToDetails")
+  md-card#card-example(:id="event.key")
     md-card-area(md-inset)
 
       md-card-header
-        h2.md-title {{ event.name }}
+        h2(@click="goToDetails").md-title {{ event.name }}
         div.md-subhead
           md-icon location_on
           span {{` ${event.address}`}}
@@ -12,7 +12,8 @@
           md-icon event_available
           span {{ event.dates | getDatesWithoutTime }}
 
-      md-card-content {{ event.description }}
+      //
+        md-card-content {{ event.description }}
 </template>
 
 <script>
