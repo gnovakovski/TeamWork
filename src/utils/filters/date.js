@@ -16,5 +16,14 @@ module.exports = {
       minutes : datePlusZero(date.getMinutes())
     }
     return `${date.day}/${date.month}/${date.year} às ${date.hours}:${date.minutes}`
+  },
+  'getDateWithoutTime': date => {
+    date = new Date(date)
+    date = {
+      day     : datePlusZero(date.getDate()),
+      month   : datePlusZero(date.getMonth()),
+      year    : date.getFullYear()
+    }
+    return `${date.day}/${date.month}/${date.year}`
   }
 }
