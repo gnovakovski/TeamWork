@@ -53,7 +53,7 @@
       dates() {
         this.selected = this.event.dates && this.event.dates[0] && this.event.dates[0].times && this.event.dates[0].times[0] ? this.event.dates[0].times[0].people : []
         return this.event.dates.map(d => {
-          d.value = getDateWithoutTime(d.value)
+          d.value = getDateWithoutTime(d)
           return d
         })
       }

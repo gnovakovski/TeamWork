@@ -3,10 +3,7 @@ function datePlusZero(date) {
 }
 
 module.exports = {
-  datePlusZero(date) {
-    return date < 10 ? '0' + date : date
-  },
-  'getDefaultFormat': date => {
+  getDefaultFormat(date) {
     date = new Date(date)
     date = {
       day     : datePlusZero(date.getDate()),
@@ -17,7 +14,7 @@ module.exports = {
     }
     return `${date.day}/${date.month}/${date.year} às ${date.hours}:${date.minutes}`
   },
-  'getDatesWithoutTime': datesArray => {
+  getDatesWithoutTime(datesArray) {
     return datesArray.map(date => {
       date = new Date(date.value)
       date = {
@@ -28,7 +25,7 @@ module.exports = {
       return ` ${date.day}/${date.month}/${date.year} \n`
     }).join('\n')
   },
-  'getDateWithoutTime': date => {
+  getDateWithoutTime(date) {
     date = new Date(date.value)
     date = {
       day     : datePlusZero(date.getDate()),
@@ -37,7 +34,7 @@ module.exports = {
     }
     return ` ${date.day}/${date.month}/${date.year}`
   },
-  'getOrderDateFrom': datesArray => {
+  getOrderDateFrom(datesArray) {
     if (datesArray[0] && datesArray[0].value) {
       datesArray = datesArray.map((date) => new Date(date.value))
     }

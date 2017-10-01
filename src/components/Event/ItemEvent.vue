@@ -13,17 +13,6 @@
           span {{ event.dates | getDatesWithoutTime }}
 
       md-card-content {{ event.description }}
-
-    //
-      md-card-content
-        h3.md-subheading Horários
-        div.card-reservation
-          md-iconaccess_time
-          md-button-toggle(md-single).md-button-group
-            md-button Dia 17: 10h30 às 12h30
-            md-button Dia 17: 10h30 às 12h30
-            md-button Dia 17: 10h30 às 12h30
-
 </template>
 
 <script>
