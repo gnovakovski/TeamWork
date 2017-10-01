@@ -11,7 +11,7 @@
         md-dialog-content
           form(novalidate @submit.stop.prevent="submit")
             md-input-container
-              label Nome
+              label Título
               md-input(required v-model="event.name")
 
             md-input-container
@@ -36,6 +36,8 @@
                   md-icon access_time
                   label hh:mm às hh:mm
                   md-input(required v-model="time.value" placeholder="Horário")
+                  md-button(md-raised md-primary @click="newTime(dateIndex)").md-icon-button
+                    md-icon add
 
           md-layout.dialog-actions
             md-layout(md-flex="50")
@@ -49,6 +51,11 @@
 <script>
 
 import api from '@/utils/api/'
+
+const getTimeObject = () => ({
+  value: '',
+  people: []
+})
 
 export default {
   name: 'new-event-dialog',
@@ -78,6 +85,9 @@ export default {
       this.event = this.setInitialValues()
       this.$refs['new-event-dialog'].close()
     },
+    newTime(dateIndex) {
+      this.dates[dateIndex].push(getTimeObject())
+    },
     addEvent() {
       api.events.push({
         'name': this.event.name,
@@ -105,15 +115,7 @@ export default {
         description: null,
         address: null,
         dates: [
-          {
-            value: null,
-            times: [
-              {
-                value: '',
-                people: []
-              }
-            ]
-          }
+          getTimeObject()
         ],
         lastDate: null
       }
