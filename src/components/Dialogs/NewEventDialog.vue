@@ -53,6 +53,7 @@
 <script>
 
 import api from '@/utils/api/'
+import { getOrderDateFrom } from '@/utils/filters/date'
 
 const factoryDateObject = () => ({
   value: '',
@@ -100,13 +101,19 @@ export default {
     newDate() {
       this.event.dates.push(factoryDateObject())
     },
+    formatDatesFromInputs() {
+      this.event.dates.forEach(date => {
+        date.value = new Date(date.value)
+      })
+    },
     addEvent() {
+      this.formatDatesFromInputs()
       api.events.push({
         'name': this.event.name,
         'address': this.event.address,
         'description': this.event.description,
         'dates': this.event.dates,
-        'lastDate': this.event.lastDate,
+        'orderDate': getOrderDateFrom(this.event.dates),
         'username': localStorage.getItem('USERNAME')
       })
     },

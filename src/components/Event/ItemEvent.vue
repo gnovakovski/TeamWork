@@ -7,10 +7,10 @@
         h2.md-title {{ event.name }}
         div.md-subhead
           md-icon location_on
-          span {{`${event.address} `}}
+          span {{` ${event.address}`}}
         div.md-subhead
           md-icon event_available
-          span {{ event.date | getDateWithoutTime }}
+          span {{ event.dates | getDatesWithoutTime }}
 
       md-card-content {{ event.description }}
 
@@ -27,10 +27,10 @@
 </template>
 
 <script>
-  import { getDateWithoutTime } from '@/utils/filters/date.js'
+  import { getDatesWithoutTime } from '@/utils/filters/date.js'
   export default {
     name: 'item-event',
-    filters: { getDateWithoutTime },
+    filters: { getDatesWithoutTime },
     props: {
       event: Object
     },
