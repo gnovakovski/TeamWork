@@ -7,7 +7,7 @@ module.exports = {
     date = new Date(date)
     date = {
       day     : datePlusZero(date.getDate()),
-      month   : datePlusZero(date.getMonth()),
+      month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear(),
       hours   : datePlusZero(date.getHours()),
       minutes : datePlusZero(date.getMinutes())
@@ -19,7 +19,7 @@ module.exports = {
       date = new Date(date.value)
       date = {
         day     : datePlusZero(date.getDate()),
-        month   : datePlusZero(date.getMonth()),
+        month   : datePlusZero(date.getMonth() + 1),
         year    : date.getFullYear()
       }
       return ` ${date.day}/${date.month}/${date.year} \n`
@@ -29,7 +29,7 @@ module.exports = {
     date = new Date(date.value)
     date = {
       day     : datePlusZero(date.getDate()),
-      month   : datePlusZero(date.getMonth()),
+      month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear()
     }
     return ` ${date.day}/${date.month}/${date.year}`

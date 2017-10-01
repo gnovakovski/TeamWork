@@ -19,10 +19,10 @@
 
       // Pessoas que vão
       md-tab.no-paddings(id="event-list" md-label="Pessoas que vão")
-        md-tabs
+        md-tabs(@change="(i) => selectPeople(dates[i].times[0])")
           // Tab date
           md-tab(v-for="date in dates" :key="date.value" :md-label="date.value")
-            md-chip.margin(v-for="time in date.times" :key="time.value" :class="{ 'md-primary': selected === time.people }" @click.native="selected = time.people") {{ time.value }}
+            md-chip.margin(v-for="time in date.times" :key="time.value" @click.native="selectPeople(time)") {{ time.value }}
             // Lista usuários
             md-list
               md-list-item(v-for="user in selected" :key="user") {{ user }}
@@ -46,18 +46,23 @@
     data() {
       return {
         event: {},
-        selected: []
+        selected: {}
       }
     },
     computed: {
       dates() {
-        this.selected = this.event.dates && this.event.dates[0] && this.event.dates[0].times && this.event.dates[0].times[0] ? this.event.dates[0].times[0].people : []
+        this.selectPeople(this.event.dates && this.event.dates[0] && this.event.dates[0].times && this.event.dates[0].times[0] ? this.event.dates[0].times[0].people : [])
         return this.event.dates.map(d => {
           return {
             value: getDateWithoutTime(d),
             times: d.times
           }
         })
+      }
+    },
+    methods: {
+      selectPeople(times = { people: [] }) {
+        this.selected = times.people
       }
     },
     mounted() {
