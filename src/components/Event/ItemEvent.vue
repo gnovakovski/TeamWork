@@ -8,8 +8,9 @@
         div.md-subhead
           md-icon location_on
           span {{`${event.address} `}}
-          md-icon access_time
-          span {{ event.date | getDefaultFormat }}
+        div.md-subhead
+          md-icon event_available
+          span {{ event.date | getDateWithoutTime }}
 
       md-card-content {{ event.description }}
 
@@ -26,10 +27,10 @@
 </template>
 
 <script>
-  import { getDefaultFormat } from '@/utils/filters/date.js'
+  import { getDateWithoutTime } from '@/utils/filters/date.js'
   export default {
     name: 'item-event',
-    filters: { getDefaultFormat },
+    filters: { getDateWithoutTime },
     props: {
       event: Object
     },

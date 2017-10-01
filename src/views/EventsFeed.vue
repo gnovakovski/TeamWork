@@ -3,7 +3,7 @@
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
     fab-button(@click="$refs.newEventDialog.open()")
-    new-event-dialog(ref="newEventDialog" @addEvent="addEvent")
+    new-event-dialog(ref="newEventDialog")
 
 </template>
 
@@ -21,29 +21,6 @@
     },
     firebase: {
       events: api.events.orderByChild('date')
-    },
-    methods: {
-      openModal() {
-        this.showModal = true
-        console.log('ABRIU')
-      },
-      closeModal() {
-        this.showModal = false
-        console.log('FECHOU')
-      },
-      removeEvent(key) {
-        api.events.child(key).remove()
-      },
-      addEvent(event) {
-        if (event) {
-          api.events.push({
-            'name': event.name,
-            'date': event.date,
-            'address': event.address,
-            'description': event.description
-          })
-        }
-      }
     }
   }
 </script>

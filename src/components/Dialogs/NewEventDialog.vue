@@ -9,30 +9,33 @@
           div Novo Evento
 
         md-dialog-content
-          <form novalidate @submit.stop.prevent="submit">
-            <md-input-container>
-              <label>Nome</label>
-              <md-input required v-model="name"></md-input>
-            </md-input-container>
+          form(novalidate @submit.stop.prevent="submit")
+            md-input-container
+              label Nome
+              md-input(required v-model="event.name")
 
-            <md-input-container>
-              <label>Descrição</label>
-              <md-textarea required maxlength="150" v-model="description"></md-textarea>
-            </md-input-container>
+            md-input-container
+              label Descrição
+              md-textarea(required maxlength="150" v-model="event.description")
 
-            <md-input-container>
-              <md-icon>location_on</md-icon>
-              <label>Local</label>
-              <md-input required v-model="address"></md-input>
-            </md-input-container>
+            md-input-container
+              md-icon location_on
+              label Local
+              md-input(required v-model="event.address")
 
-            <md-input-container>
-              <md-icon>access_time</md-icon>
-              <label>Data e Hora</label>
-              <md-input required v-model="date"></md-input>
-            </md-input-container>
+            div(v-for="(date, dateIndex) in event.dates" :key="dateIndex")
 
-          </form>
+              md-input-container
+                md-icon event_available
+                label Data
+                md-input(required v-model="date.value" type="date")
+
+              div(v-for="(time, timeIndex) in date.times" :key="timeIndex")
+
+                md-input-container
+                  md-icon access_time
+                  label hh:mm às hh:mm
+                  md-input(required v-model="time.value" placeholder="Horário")
 
           md-layout.dialog-actions
             md-layout(md-flex="50")
@@ -45,18 +48,20 @@
 
 <script>
 
+import api from '@/utils/api/'
+
 export default {
   name: 'new-event-dialog',
   components: {
     Snackbar: require('@/components/SnackBar.vue')
   },
+  firebase: {
+    events: api.events.orderByChild('date')
+  },
   props: ['from'],
   data() {
     return {
-      name: null,
-      description: null,
-      address: null,
-      date: null
+      event: this.setInitialValues()
     }
   },
   methods: {
@@ -65,19 +70,53 @@ export default {
     },
     close(saveIt) {
       if (saveIt) {
-        this.$emit('addEvent', {
-          name: this.name,
-          description: this.description,
-          address: this.address,
-          date: this.date,
-          username: localStorage.getItem('USERNAME')
-        })
+        if (this.isFormValid() === false) {
+          return
+        }
+        this.addEvent()
       }
-      this.name = null
-      this.description = null
-      this.address = null
-      this.date = null
+      this.event = this.setInitialValues()
       this.$refs['new-event-dialog'].close()
+    },
+    addEvent() {
+      api.events.push({
+        'name': this.event.name,
+        'address': this.event.address,
+        'description': this.event.description,
+        'dates': this.event.dates,
+        'lastDate': this.event.lastDate,
+        'username': localStorage.getItem('USERNAME')
+      })
+    },
+    removeEvent(key) {
+      api.events.child(key).remove()
+    },
+    isFormValid() {
+      if (this.event.name !== null &&
+          this.event.date !== null &&
+          this.event.address !== null &&
+          this.event.description !== null)
+        return true
+      return false
+    },
+    setInitialValues() {
+      return {
+        name: null,
+        description: null,
+        address: null,
+        dates: [
+          {
+            value: null,
+            times: [
+              {
+                value: '',
+                people: []
+              }
+            ]
+          }
+        ],
+        lastDate: null
+      }
     }
   }
 }
