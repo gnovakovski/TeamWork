@@ -101,13 +101,7 @@ export default {
     newDate() {
       this.event.dates.push(factoryDateObject())
     },
-    formatDatesFromInputs() {
-      this.event.dates.forEach(date => {
-        date.value = new Date(date.value)
-      })
-    },
     addEvent() {
-      this.formatDatesFromInputs()
       api.events.push({
         'name': this.event.name,
         'address': this.event.address,
