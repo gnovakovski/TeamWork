@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.event-details
+  div.event-details(v-if="event.name")
     md-tabs
       md-tab(id="event-tab" md-label="Evento")
         span.md-title {{ event.name | capitalize }}
@@ -13,7 +13,8 @@
       md-tab(id="event-list" md-label="Pessoas que vão")
         p Em desenvolvimento
 
-    fab-button(@click="")
+    event-appointment(ref="appointmentDialog" from="#fab-details" :event="event")
+    fab-button#fab-details(@click="$refs.appointmentDialog.open()" icon="thumb_up")
 </template>
 
 <script>
@@ -23,7 +24,8 @@
 
   export default {
     components: {
-      FabButton: () => import('@/components/Buttons/FabButton.vue')
+      FabButton: () => import('@/components/Buttons/FabButton.vue'),
+      EventAppointment: () => import('@/components/Dialogs/EventAppointment.vue')
     },
     filters: { capitalize, getDefaultFormat },
     data() {

@@ -67,7 +67,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      if (!localStorage['IS-AUTH'])
+      if (!localStorage['USER'])
         this.open()
     })
   }

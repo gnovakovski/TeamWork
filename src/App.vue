@@ -51,4 +51,9 @@ body
 
 .md-list-item
   z-index unset
+
+ul
+  list-style-type none
+  text-align left
+  padding-left 20px
 </style>
