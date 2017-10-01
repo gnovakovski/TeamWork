@@ -29,12 +29,14 @@
                 md-icon event_available
                 label Data
                 md-input(required v-model="date.value" type="date")
+                md-button(md-raised md-primary @click="newDate").md-icon-button
+                    md-icon add
 
               div(v-for="(time, timeIndex) in date.times" :key="timeIndex")
 
-                md-input-container
+                md-input-container.time-input
                   md-icon access_time
-                  label hh:mm às hh:mm
+                  label.time-input hh:mm às hh:mm
                   md-input(required v-model="time.value" placeholder="Horário")
                   md-button(md-raised md-primary @click="newTime(dateIndex)").md-icon-button
                     md-icon add
@@ -52,7 +54,14 @@
 
 import api from '@/utils/api/'
 
-const getTimeObject = () => ({
+const factoryDateObject = () => ({
+  value: '',
+  times: [
+    factoryTimeObject()
+  ]
+})
+
+const factoryTimeObject = () => ({
   value: '',
   people: []
 })
@@ -86,7 +95,10 @@ export default {
       this.$refs['new-event-dialog'].close()
     },
     newTime(dateIndex) {
-      this.dates[dateIndex].push(getTimeObject())
+      this.event.dates[dateIndex].times.push(factoryTimeObject())
+    },
+    newDate() {
+      this.event.dates.push(factoryDateObject())
     },
     addEvent() {
       api.events.push({
@@ -115,7 +127,7 @@ export default {
         description: null,
         address: null,
         dates: [
-          getTimeObject()
+          factoryDateObject()
         ],
         lastDate: null
       }
@@ -144,6 +156,9 @@ export default {
 
 .dialog-actions
   padding-top 20px
+
+.time-input
+  padding-left 20px
 
 @media (min-width 612px)
   .form-container
