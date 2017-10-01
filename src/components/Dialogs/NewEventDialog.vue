@@ -16,7 +16,7 @@
 
             md-input-container
               label Descrição
-              md-textarea(required maxlength="150" v-model="event.description")
+              md-textarea(maxlength="150" v-model="event.description")
 
             md-input-container
               md-icon location_on
@@ -117,8 +117,7 @@ export default {
     isFormValid() {
       if (this.event.name !== null &&
           this.event.date !== null &&
-          this.event.address !== null &&
-          this.event.description !== null)
+          this.event.address !== null)
         return true
       return false
     },
