@@ -28,6 +28,15 @@ module.exports = {
       return ` ${date.day}/${date.month}/${date.year} \n`
     }).join('\n')
   },
+  'getDateWithoutTime': date => {
+    date = new Date(date.value)
+    date = {
+      day     : datePlusZero(date.getDate()),
+      month   : datePlusZero(date.getMonth()),
+      year    : date.getFullYear()
+    }
+    return ` ${date.day}/${date.month}/${date.year}`
+  },
   'getOrderDateFrom': datesArray => {
     if (datesArray[0] && datesArray[0].value) {
       datesArray = datesArray.map((date) => new Date(date.value))
