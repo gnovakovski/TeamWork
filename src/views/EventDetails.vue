@@ -15,7 +15,7 @@
               div.times
                 md-chip.margin.md-caption(v-for="time in date.times" :key="time.value") {{ time.value }}
 
-        p {{ event.description }}
+        p(v-html="event.description")
 
       // Pessoas que vão
       md-tab.no-paddings(id="event-list" md-label="Pessoas que vão")
@@ -69,6 +69,7 @@
       api.event(this.$route.params.id).once('value', snap => {
         this.event        = snap.val()
         this.event['key'] = snap.key
+        this.event['description'] = this.event['description'].replace(/\n/g, '<br>')
       })
     }
   }
