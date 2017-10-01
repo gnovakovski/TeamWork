@@ -8,28 +8,26 @@
       md-dialog-content
         form(novalidate @submit.stop.prevent="submit")
           ul
-            li(v-for="date in event.dates") {{ date.value | getDateWithoutTime }}
+            li(v-for="date in event.dates") {{ date.value }}
               ul
                 li(v-for="time in date.times")
                   md-checkbox(v-model="time.isSelected") {{ time.value }}
 
       md-dialog-actions
         md-button(@click="close(false)").md-primary Cancelar
-        md-button(@click="close(true)").md-primary.md-raised Eu vou
+        md-button(@click="close(true)").md-primary.md-raised Criar
 
     snackbar(ref="snackbar")
 </template>
 
 <script>
   import api from '@/utils/api/'
-  import { getDateWithoutTime } from '@/utils/filters/date'
 
   export default {
     name: 'event-appointment',
     components: {
       Snackbar: require('@/components/SnackBar.vue')
     },
-    filters: { getDateWithoutTime },
     props: ['from', 'event'],
     data() {
       return {}

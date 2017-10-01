@@ -4,7 +4,7 @@
       // Detalhes evento
       md-tab(id="event-tab" md-label="Evento")
         span.md-title {{ event.name | capitalize }}
-        div.md-subhead
+        div.margin.md-subhead
           md-icon location_on
           span {{ event.address }}
 
