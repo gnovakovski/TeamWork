@@ -35,7 +35,8 @@
     },
     mounted() {
       api.event(this.$route.params.id).once('value', snap => {
-        this.event = snap.val()
+        this.event        = snap.val()
+        this.event['key'] = snap.key
       })
     }
   }

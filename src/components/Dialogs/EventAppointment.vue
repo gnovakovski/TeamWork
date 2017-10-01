@@ -8,7 +8,7 @@
       md-dialog-content
         form(novalidate @submit.stop.prevent="submit")
           ul
-            li(v-for="date in event.dates") {{ date.value }}
+            li(v-for="date in event.dates") {{ date.value | getDateWithoutTime }}
               ul
                 li(v-for="time in date.times")
                   md-checkbox(v-model="time.isSelected") {{ time.value }}
@@ -22,12 +22,14 @@
 
 <script>
   import api from '@/utils/api/'
+  import { getDateWithoutTime } from '@/utils/filters/date'
 
   export default {
     name: 'event-appointment',
     components: {
       Snackbar: require('@/components/SnackBar.vue')
     },
+    filters: { getDateWithoutTime },
     props: ['from', 'event'],
     data() {
       return {}
@@ -39,11 +41,16 @@
           d.times.map(t => {
             if (t.isSelected) {
               delete t.isSelected
+
+              t.people = t.people || []
               if (t.people.indexOf(this.username) === -1)
                 t.people.push(this.username)
             }
           })
         })
+        api.events.child(this.event['key']).set(this.event)
+          .then(() => this.$refs['snackbar'].show('Confirmado'))
+          .catch(() => this.$refs['snackbar'].show('Desculpe, tente novamente mais tarde'))
       },
       open() {
         this.$refs['event-appointment'].open()
