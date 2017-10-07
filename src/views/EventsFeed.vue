@@ -20,7 +20,7 @@
       NewEventDialog: () => import('@/components/Dialogs/NewEventDialog.vue')
     },
     firebase: {
-      events: api.events.orderByChild('orderDate')
+      events: api.events.orderByChild('orderDate').limitToFirst(15)
     }
   }
 </script>
