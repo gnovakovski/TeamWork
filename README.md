@@ -1,2 +1,2 @@
-# TeamWork
+# Teamwork
 Magic project ;)
