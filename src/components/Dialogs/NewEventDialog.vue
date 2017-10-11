@@ -108,7 +108,7 @@ export default {
         'description': this.event.description,
         'dates': this.event.dates,
         'orderDate': getOrderDateFrom(this.event.dates),
-        'username': localStorage.getItem('USERNAME')
+        'username': api.getUser().username
       })
     },
     removeEvent(key) {

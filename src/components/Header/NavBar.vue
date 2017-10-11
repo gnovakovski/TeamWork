@@ -2,7 +2,7 @@
   md-toolbar.row.justify-space-between.header(:class="{ 'hidden': hiddeNav }")
     md-button.md-icon-button(@click.native="$emit('openSidenav')")
       md-icon menu
-    span.title-header(@click="scrollTop") Welcome
+    span.title-header(@click="scrollTop") Eventos
 </template>
 
 <script>

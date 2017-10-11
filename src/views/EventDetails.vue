@@ -3,6 +3,8 @@
     md-tabs
       // Detalhes evento
       md-tab(id="event-tab" md-label="Evento")
+        div.margin.created-by Criado por
+          b {{ ` ${event.username}` }}
         span.md-title {{ event.name | capitalize }}
         div.margin.md-subhead
           md-icon location_on
@@ -79,6 +81,7 @@
 .date
   padding-bottom 3px
   margin-right 5px
+
 .times
   margin-left 30px
 
@@ -86,4 +89,8 @@
   padding 0
 .margin
   margin 5px
+
+.created-by
+  margin-left -130px
+
 </style>

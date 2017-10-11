@@ -2,6 +2,7 @@
   div#events-feed
     div(v-for="event in events" :key="event._id").center-feed
       item-event(:event="event")
+    md-spinner(v-if="!events.length" :md-size=125 md-indeterminate).margin-top
     fab-button(@click="$refs.newEventDialog.open()")
     new-event-dialog(ref="newEventDialog")
 
@@ -34,6 +35,9 @@
 .center-feed
   margin 0 auto
   padding-top 20px
+
+.margin-top
+  margin-top 45%
 
 @media (min-width 612px)
   .center-feed
