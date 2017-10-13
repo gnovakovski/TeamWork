@@ -3,10 +3,26 @@ function datePlusZero(date) {
 }
 
 module.exports = {
+  formatDates(datesArray) {
+    const newDatesArray = []
+
+    datesArray.forEach((date) => {
+      const dateObject = new Date(date.value)
+
+      dateObject.setDate(dateObject.getDate() + 1)
+
+      newDatesArray.push({
+        times: date.times,
+        value: String(dateObject)
+      })
+    })
+
+    return newDatesArray
+  },
   getDefaultFormat(date) {
     date = new Date(date)
     date = {
-      day     : datePlusZero(date.getDate() + 1),
+      day     : datePlusZero(date.getDate()),
       month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear(),
       hours   : datePlusZero(date.getHours()),
@@ -18,7 +34,7 @@ module.exports = {
     return datesArray.map(date => {
       date = new Date(date.value)
       date = {
-        day     : datePlusZero(date.getDate() + 1),
+        day     : datePlusZero(date.getDate()),
         month   : datePlusZero(date.getMonth() + 1),
         year    : date.getFullYear()
       }
@@ -28,7 +44,7 @@ module.exports = {
   getDateWithoutTime(date) {
     date = new Date(date.value)
     date = {
-      day     : datePlusZero(date.getDate() + 1),
+      day     : datePlusZero(date.getDate()),
       month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear()
     }

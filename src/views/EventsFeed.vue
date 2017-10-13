@@ -37,7 +37,7 @@
   padding-top 20px
 
 .margin-top
-  margin-top 45%
+  margin-top 30vh
 
 @media (min-width 612px)
   .center-feed

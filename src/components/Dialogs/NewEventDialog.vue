@@ -53,7 +53,7 @@
 <script>
 
 import api from '@/utils/api/'
-import { getOrderDateFrom } from '@/utils/filters/date'
+import { getOrderDateFrom, formatDates } from '@/utils/filters/date'
 
 const factoryDateObject = () => ({
   value: '',
@@ -106,7 +106,7 @@ export default {
         'name': this.event.name,
         'address': this.event.address,
         'description': this.event.description,
-        'dates': this.event.dates,
+        'dates': formatDates(this.event.dates),
         'orderDate': getOrderDateFrom(this.event.dates),
         'username': api.getUser().username
       })
@@ -116,10 +116,13 @@ export default {
     },
     isFormValid() {
       if (this.event.name !== null &&
-          this.event.date !== null &&
+          this.isDateValid(this.event.dates) &&
           this.event.address !== null)
         return true
       return false
+    },
+    isDateValid(dates) {
+      return !dates.some(date => date.value == null || date.value === '')
     },
     setInitialValues() {
       return {
