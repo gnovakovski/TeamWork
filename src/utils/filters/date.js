@@ -6,7 +6,7 @@ module.exports = {
   getDefaultFormat(date) {
     date = new Date(date)
     date = {
-      day     : datePlusZero(date.getDate()),
+      day     : datePlusZero(date.getDate() + 1),
       month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear(),
       hours   : datePlusZero(date.getHours()),
@@ -18,7 +18,7 @@ module.exports = {
     return datesArray.map(date => {
       date = new Date(date.value)
       date = {
-        day     : datePlusZero(date.getDate()),
+        day     : datePlusZero(date.getDate() + 1),
         month   : datePlusZero(date.getMonth() + 1),
         year    : date.getFullYear()
       }
@@ -28,7 +28,7 @@ module.exports = {
   getDateWithoutTime(date) {
     date = new Date(date.value)
     date = {
-      day     : datePlusZero(date.getDate()),
+      day     : datePlusZero(date.getDate() + 1),
       month   : datePlusZero(date.getMonth() + 1),
       year    : date.getFullYear()
     }
