@@ -1,11 +1,12 @@
 {
-  "name": "Teamwork",
+  "name": "teamwork",
   "version": "0.0.1",
   "description": "Magic project",
   "author": "ezequielmross <ezequielmross@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
+    "deploy": "node scripts/deploy.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "serve": "node build/serve-dist.js"
