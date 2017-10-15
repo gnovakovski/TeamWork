@@ -51,119 +51,118 @@
 </template>
 
 <script>
+  import api from '@/utils/api/'
+  import { getOrderDateFrom, formatDates } from '@/utils/filters/date'
 
-import api from '@/utils/api/'
-import { getOrderDateFrom, formatDates } from '@/utils/filters/date'
+  const factoryDateObject = () => ({
+    value: '',
+    times: [
+      factoryTimeObject()
+    ]
+  })
 
-const factoryDateObject = () => ({
-  value: '',
-  times: [
-    factoryTimeObject()
-  ]
-})
+  const factoryTimeObject = () => ({
+    value: '',
+    people: []
+  })
 
-const factoryTimeObject = () => ({
-  value: '',
-  people: []
-})
-
-export default {
-  name: 'new-event-dialog',
-  components: {
-    Snackbar: require('@/components/SnackBar.vue')
-  },
-  firebase: {
-    events: api.events.orderByChild('date')
-  },
-  props: ['from'],
-  data() {
-    return {
-      event: this.setInitialValues()
-    }
-  },
-  methods: {
-    open() {
-      this.$refs['new-event-dialog'].open()
+  export default {
+    name: 'new-event-dialog',
+    components: {
+      Snackbar: require('@/components/SnackBar.vue')
     },
-    close(saveIt) {
-      if (saveIt) {
-        if (this.isFormValid() === false) {
-          return
-        }
-        this.addEvent()
-      }
-      this.event = this.setInitialValues()
-      this.$refs['new-event-dialog'].close()
+    firebase: {
+      events: api.events.orderByChild('date')
     },
-    newTime(dateIndex) {
-      this.event.dates[dateIndex].times.push(factoryTimeObject())
-    },
-    newDate() {
-      this.event.dates.push(factoryDateObject())
-    },
-    addEvent() {
-      api.events.push({
-        'name': this.event.name,
-        'address': this.event.address,
-        'description': this.event.description,
-        'dates': formatDates(this.event.dates),
-        'orderDate': getOrderDateFrom(this.event.dates),
-        'username': api.getUser().username
-      })
-    },
-    removeEvent(key) {
-      api.events.child(key).remove()
-    },
-    isFormValid() {
-      if (this.event.name !== null &&
-          this.isDateValid(this.event.dates) &&
-          this.event.address !== null)
-        return true
-      return false
-    },
-    isDateValid(dates) {
-      return !dates.some(date => date.value == null || date.value === '')
-    },
-    setInitialValues() {
+    props: ['from'],
+    data() {
       return {
-        name: null,
-        description: null,
-        address: null,
-        dates: [
-          factoryDateObject()
-        ],
-        lastDate: null
+        event: this.setInitialValues()
+      }
+    },
+    methods: {
+      open() {
+        this.$refs['new-event-dialog'].open()
+      },
+      close(saveIt) {
+        if (saveIt) {
+          if (this.isFormValid() === false) {
+            return
+          }
+          this.addEvent()
+        }
+        this.event = this.setInitialValues()
+        this.$refs['new-event-dialog'].close()
+      },
+      newTime(dateIndex) {
+        this.event.dates[dateIndex].times.push(factoryTimeObject())
+      },
+      newDate() {
+        this.event.dates.push(factoryDateObject())
+      },
+      addEvent() {
+        api.events.push({
+          'name': this.event.name,
+          'address': this.event.address,
+          'description': this.event.description,
+          'dates': formatDates(this.event.dates),
+          'orderDate': getOrderDateFrom(this.event.dates),
+          'username': api.getUser().username
+        })
+      },
+      removeEvent(key) {
+        api.events.child(key).remove()
+      },
+      isFormValid() {
+        if (this.event.name !== null &&
+            this.isDateValid(this.event.dates) &&
+            this.event.address !== null)
+          return true
+        return false
+      },
+      isDateValid(dates) {
+        return !dates.some(date => date.value == null || date.value === '')
+      },
+      setInitialValues() {
+        return {
+          name: null,
+          description: null,
+          address: null,
+          dates: [
+            factoryDateObject()
+          ],
+          lastDate: null
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-.dialog-container >>> .md-dialog
-  width 100vw
-  max-width 100%
-  height 100vh
-  max-height 100%
-  overflow-y auto
+  .dialog-container >>> .md-dialog
+    width 100vw
+    max-width 100%
+    height 100vh
+    max-height 100%
+    overflow-y auto
 
-.form-container
-  margin 0 auto
-  width 90%
-
-.md-dialog-title
-  margin-bottom 35px
-
-.md-dialog-content
-  padding 0
-
-.dialog-actions
-  padding-top 20px
-
-.time-input
-  padding-left 20px
-
-@media (min-width 612px)
   .form-container
-    width 75%
+    margin 0 auto
+    width 90%
+
+  .md-dialog-title
+    margin-bottom 35px
+
+  .md-dialog-content
+    padding 0
+
+  .dialog-actions
+    padding-top 20px
+
+  .time-input
+    padding-left 20px
+
+  @media (min-width 612px)
+    .form-container
+      width 75%
 </style>

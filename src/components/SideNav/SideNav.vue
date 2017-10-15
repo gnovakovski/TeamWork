@@ -9,7 +9,7 @@
         // Routes
         md-list
           md-list-item(v-for="route in routes" :key="route.name" v-if="route && route.label")
-            router-link(:to="route.name")
+            router-link(:to="route.path")
               span {{ route.label }}
 </template>
 
